@@ -1,2 +1,3 @@
-# docker_ghidra_headless_base
-base docker image for ghidra headless scripting
+# `ghidra_headless_base`
+
+Base docker image for ghidra headless scripting.
