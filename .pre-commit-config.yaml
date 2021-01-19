@@ -1,0 +1,6 @@
+default_stages: [commit, push]
+repos:
+-   repo: https://github.com/pryorda/dockerfilelint-precommit-hooks
+    rev: v0.1.0
+    hooks:
+    -   id: dockerfilelint
