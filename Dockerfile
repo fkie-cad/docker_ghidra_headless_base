@@ -10,8 +10,7 @@ RUN apt-get update && \
 
 RUN wget https://ghidra-sre.org/${GHIDRA_VERSION}.zip && \
     unzip -d ghidra ${GHIDRA_VERSION}.zip && \
-    rm ${GHIDRA_VERSION}.zip
-
-RUN mv ghidra/ghidra_* /opt/ghidra
+    rm ${GHIDRA_VERSION}.zip && \
+    mv ghidra/ghidra_* /opt/ghidra
 
 ENV PATH="/opt/ghidra:/opt/ghidra/support:${PATH}"
