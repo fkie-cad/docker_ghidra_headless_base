@@ -1,10 +1,10 @@
 FROM openjdk:jdk-slim
 
-ENV GHIDRA_RELEASE_TAG Ghidra_10.0.1_build
-ENV GHIDRA_VERSION ghidra_10.0.1_PUBLIC_20210708
+ENV GHIDRA_RELEASE_TAG Ghidra_10.0.4_build
+ENV GHIDRA_VERSION ghidra_10.0.4_PUBLIC_20210928
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends wget unzip && \
+    apt-get install -y --no-install-recommends wget unzip fontconfig && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
