@@ -1,7 +1,7 @@
 FROM openjdk:jdk-slim
 
-ENV GHIDRA_RELEASE_TAG Ghidra_10.2.2_build
-ENV GHIDRA_VERSION ghidra_10.2.2_PUBLIC_20221115
+ENV GHIDRA_RELEASE_TAG Ghidra_10.2.3_build
+ENV GHIDRA_VERSION ghidra_10.2.3_PUBLIC_20230208
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends wget unzip fontconfig && \
