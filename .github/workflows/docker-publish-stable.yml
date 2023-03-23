@@ -28,6 +28,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Login to ghcr.io Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
@@ -36,4 +43,5 @@ jobs:
             linux/amd64
           push: true
           tags: |
+            ghcr.io/fkie-cad/ghidra_headless_base:${{ steps.tagName.outputs.tag }}
             fkiecad/ghidra_headless_base:${{ steps.tagName.outputs.tag }}
