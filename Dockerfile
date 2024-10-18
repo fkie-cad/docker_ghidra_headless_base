@@ -1,16 +1,15 @@
-FROM openjdk:jdk-slim
+FROM amazoncorretto:21.0.5-alpine3.20
 
-ENV GHIDRA_RELEASE_TAG Ghidra_11.0.3_build
-ENV GHIDRA_VERSION ghidra_11.0.3_PUBLIC_20240410
+ENV GHIDRA_RELEASE_TAG Ghidra_11.2_build
+ENV GHIDRA_VERSION_NAME ghidra_11.2_PUBLIC
+ENV GHIDRA_VERSION_DATE 20240926
+ENV GHIDRA_VERSION ${GHIDRA_VERSION_NAME}_${GHIDRA_VERSION_DATE}
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends wget unzip fontconfig && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache unzip curl
 
-RUN wget https://github.com/NationalSecurityAgency/ghidra/releases/download/${GHIDRA_RELEASE_TAG}/${GHIDRA_VERSION}.zip && \
-    unzip -d ghidra ${GHIDRA_VERSION}.zip && \
-    rm ${GHIDRA_VERSION}.zip && \
-    mv ghidra/ghidra_* /opt/ghidra
+RUN curl --proto '=https' --tlsv1.2 -LO https://github.com/NationalSecurityAgency/ghidra/releases/download/${GHIDRA_RELEASE_TAG}/${GHIDRA_VERSION}.zip \
+    && unzip -d ghidra ${GHIDRA_VERSION}.zip > /dev/null \
+    && rm ${GHIDRA_VERSION}.zip \
+    && mv ghidra/ghidra_* /opt/ghidra
 
 ENV PATH="/opt/ghidra:/opt/ghidra/support:${PATH}"
